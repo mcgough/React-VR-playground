@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
-import {
-  View,
-} from 'react-vr';
-import NavButton from '../Components/NavButton';
+import React, { Component } from "react";
+import { View } from "react-vr";
+import NavButton from "../Components/NavButton";
 
 export default class Navigation extends Component {
   constructor(props) {
@@ -11,7 +9,7 @@ export default class Navigation extends Component {
   render() {
     return (
       <View>
-        <NavButton 
+        <NavButton
           handleClick={this.props.handleNavClick}
           scene="Outer Space"
         />
@@ -20,6 +18,6 @@ export default class Navigation extends Component {
           scene="Chess World"
         />
       </View>
-    )
+    );
   }
 }

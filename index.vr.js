@@ -1,25 +1,18 @@
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  asset,
-  View,
-  Pano,
-  Text,
-  Animated,
-} from 'react-vr';
-import SpaceScene from './vr/Scenes/SpaceScene';
-import ChessWorld from './vr/Scenes/ChessWorld';
-import NavUI from './vr/Containers/NavUI';
+import React, { Component } from "react";
+import { AppRegistry, asset, View, Pano, Text, Animated } from "react-vr";
+import SpaceScene from "./vr/Scenes/SpaceScene";
+import ChessWorld from "./vr/Scenes/ChessWorld";
+import NavUI from "./vr/Containers/NavUI";
 
 export default class WelcomeToVR extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      scene: 'Outer Space',
+      scene: "Outer Space",
       panoSrc: {
-        'Outer Space': 'space.jpg',
-        'Chess World': 'chess-world.jpg',
-      },
+        "Outer Space": "space.jpg",
+        "Chess World": "chess-world.jpg"
+      }
     };
     this.animatedValue = new Animated.Value(0);
   }
@@ -33,13 +26,10 @@ export default class WelcomeToVR extends Component {
 
   animateValue() {
     this.animatedValue.setValue(0);
-    Animated.timing(
-      this.animatedValue,
-      {
-        toValue: 1,
-        duration: 1500,
-      }
-    ).start();   
+    Animated.timing(this.animatedValue, {
+      toValue: 1,
+      duration: 1500
+    }).start();
   }
   setScene(scene) {
     if (this.state.scene === scene) return false;
@@ -47,34 +37,31 @@ export default class WelcomeToVR extends Component {
   }
   setRenderedScene() {
     let scene;
-    switch(this.state.scene) {
-      case 'Space':
+    switch (this.state.scene) {
+      case "Space":
         scene = <SpaceScene />;
         break;
-      case 'Chess World':
+      case "Chess World":
         scene = <ChessWorld />;
         break;
       default:
-        scene = <SpaceScene />
+        scene = <SpaceScene />;
         break;
     }
-    return (
-      scene
-    )
+    return scene;
   }
 
   render() {
     const renderedScene = this.setRenderedScene();
     const { scene, panoSrc } = this.state;
-    const titleTranslateZ = scene === 'Outer Space' 
-      ? this.animatedValue.interpolate({
-          inputRange: [0, 1],
-          outputRange: [-100, -5],
-        })
-      : -5;
-    const titleOpacity = scene === 'Chess World'
-      ? this.animatedValue
-      : 1;
+    const titleTranslateZ =
+      scene === "Outer Space"
+        ? this.animatedValue.interpolate({
+            inputRange: [0, 1],
+            outputRange: [-100, -5]
+          })
+        : -5;
+    const titleOpacity = scene === "Chess World" ? this.animatedValue : 1;
     return (
       <View>
         <Pano source={asset(panoSrc[scene])} />
@@ -82,26 +69,28 @@ export default class WelcomeToVR extends Component {
           <Animated.View
             style={{
               width: 3,
-              flexDirection: 'column',
-              alignItems: 'stretch',
-              justifyContent: 'space-between',
-              borderColor: '#fff',
-              borderWidth: .03,
-              borderRadius: .05,
-              layoutOrigin: [.5, .5],
+              flexDirection: "column",
+              alignItems: "stretch",
+              justifyContent: "space-between",
+              borderColor: "#fff",
+              borderWidth: 0.03,
+              borderRadius: 0.05,
+              layoutOrigin: [0.5, 0.5],
               opacity: titleOpacity,
               transform: [
-                {translate: [0, 0]},
-                {translateZ: titleTranslateZ},
-              ],
-            }}>
+                { translate: [0, 0] },
+                { translateZ: titleTranslateZ }
+              ]
+            }}
+          >
             <Text
               style={{
-                fontSize: .5,
-                textAlign: 'center',
-                textAlignVertical: 'center',
-                marginBottom: .025,
-              }}>
+                fontSize: 0.5,
+                textAlign: "center",
+                textAlignVertical: "center",
+                marginBottom: 0.025
+              }}
+            >
               {scene}
             </Text>
             <NavUI handleNavClick={this.setScene.bind(this)} />
@@ -111,6 +100,6 @@ export default class WelcomeToVR extends Component {
       </View>
     );
   }
-};
+}
 
-AppRegistry.registerComponent('WelcomeToVR', () => WelcomeToVR);
+AppRegistry.registerComponent("WelcomeToVR", () => WelcomeToVR);

@@ -1,8 +1,5 @@
-import React from 'react';
-import {
-  asset,
-  Model,
-} from 'react-vr';
+import React from "react";
+import { asset, Model } from "react-vr";
 
 export default class DeathStar extends React.Component {
   constructor(props) {
@@ -14,17 +11,13 @@ export default class DeathStar extends React.Component {
     return (
       <Model
         source={{
-          obj: asset('rook/chess.obj'),
+          obj: asset("rook/chess.obj")
         }}
         style={{
-          transform: [
-            {translateX: x},
-            {translateY: y},
-            {translateZ: z},
-          ],
+          transform: [{ translateX: x }, { translateY: y }, { translateZ: z }]
         }}
         wireframe={true}
-      />     
-    )   
+      />
+    );
   }
 }

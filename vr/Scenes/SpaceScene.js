@@ -1,9 +1,6 @@
-import React from 'react';
-import {
-  View,
-} from 'react-vr';
-import { Easing } from 'react-native';
-import DeathStar from '../Components/DeathStar';
+import React from "react";
+import { View } from "react-vr";
+import DeathStar from "../Components/DeathStar";
 
 export default class SpaceScene extends React.Component {
   constructor(props) {
@@ -17,4 +14,4 @@ export default class SpaceScene extends React.Component {
       </View>
     );
   }
-};
+}
